@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bienvenue">Welcome</string>
+    <string name="logo_app">Application logo</string>
+    <string name="historique">History</string>
+    <string name="localisation">Locate me</string>
+    <string name="parametres">App parameters</string>
+    <string name="oui">yes</string>
+    <string name="non">no</string>
+    <string name="localisation_failure">Impossible</string>
+    <string name="localisation_title">Location</string>
+    <string name="localisation_text">You\'re locate here :</string>
+    <string name="distance_text">ESEO is located here :</string>
+</resources>

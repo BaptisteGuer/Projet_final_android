@@ -4,52 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity"
+    tools:context=".ui.splash.SplashActivity"
     android:background="@drawable/fond_ecran">
 
     <ImageView
-        android:id="@+id/param"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@drawable/settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/parametres" />
-
-
-    <ImageView
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/casque"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/casque"
         android:contentDescription="@string/logo_app"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Button
-        android:id="@+id/go_to_locate"
+    <TextView
+        android:id="@+id/splash_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/localisation"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
+        android:text="@string/nom"
+        android:textColor="#F30303"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/reclyclerview"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-    <Button
-        android:id="@+id/reclyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"/>
+    <TextView
+        android:id="@+id/splash_annee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/historique"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintStart_toEndOf="@+id/go_to_locate"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/annee"
+        android:textColor="#F30303"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash_text"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

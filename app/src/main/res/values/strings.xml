@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">Projet_final_android</string>
+    <string name="app_name" translatable="false">Projet_final_android</string>
+    <string name="bienvenue">Bienvenue</string>
+    <string name="logo_app">Logo de l\'application</string>
+    <string name="annee" translatable="false">2021</string>
+    <string name="nom" translatable="false">GUERIN Baptiste</string>
+    <string name="localisation">Me localiser</string>
+    <string name="historique">Historique</string>
+    <string name="parametres">paramètres de l\'application</string>
+    <string name="oui">oui</string>
+    <string name="non">non</string>
+    <string name="localisation_failure">Impossible de vous localiser</string>
+    <string name="localisation_title">Localisation</string>
+    <string name="my_localisation_message">Souhaitez-vous autoriser votre matériel à être localisé.</string>
+    <string name="localisation_text">"Vous êtes localisé ici : "</string>
+    <string name="distance_text">"L'ESEO est situé à : "</string>
+    <string name="kilometres" translatable="false">km</string>
+    <string name="recentrer">Recentrer</string>
+    <string name="settings">Paramètres</string>
 </resources>
