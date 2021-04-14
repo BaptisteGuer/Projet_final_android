@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.eseo.projet_final_android.R
+import com.eseo.projet_final_android.ui.historique_recycler.HistoriqueActivity
 import com.eseo.projet_final_android.ui.parametres_recycler.ParameterActivity
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.go_to_locate).setOnClickListener {
             startActivity(MapActivity.getStartIntent(this))
+        }
+        findViewById<Button>(R.id.histo).setOnClickListener {
+            startActivity(HistoriqueActivity.getStartIntent(this))
         }
     }
 

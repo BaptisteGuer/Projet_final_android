@@ -34,7 +34,7 @@ class ParameterActivity : AppCompatActivity() {
             SettingsItem("Paramètres", R.drawable.settings) {
                 startActivity( Intent( Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + "com.example.projet_final_android") ) )
             },
-            SettingsItem("Paramètres de localisation", R.drawable.localisation) {
+            SettingsItem("Paramètres de localisation", R.drawable.map) {
                 val targetIntent = Intent().apply {
                     action = Settings.ACTION_LOCATION_SOURCE_SETTINGS
                 }
