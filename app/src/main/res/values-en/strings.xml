@@ -11,4 +11,9 @@
     <string name="localisation_title">Location</string>
     <string name="localisation_text">You\'re locate here :</string>
     <string name="distance_text">ESEO is located here :</string>
+    <string name="settings">Parameters</string>
+    <string name="reset">Reset</string>
+    <string name="historique_vide">Empty history</string>
+    <string name="recentrer">Focus</string>
+    <string name="my_localisation_message">Would you like to allow your material to be located ?</string>
 </resources>

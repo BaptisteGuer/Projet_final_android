@@ -9,12 +9,12 @@ import com.eseo.projet_final_android.R
 import com.eseo.projet_final_android.data.model.HistoriqueItem
 
 
-class HistoriqueAdapter(private val historiquelist: Array<HistoriqueItem>) : RecyclerView.Adapter<HistoriqueAdapter.ViewHolder>() {
+class HistoriqueAdapter(private val historiquelist: ArrayList<HistoriqueItem>) : RecyclerView.Adapter<HistoriqueAdapter.ViewHolder>() {
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun showItem(historique: HistoriqueItem) {
-            itemView.findViewById<TextView>(R.id.texte).text = historique.localisation
+            itemView.findViewById<TextView>(R.id.texte).text = historique.adresse
             itemView.findViewById<TextView>(R.id.distance).text = historique.distance.toString();
             }
         }

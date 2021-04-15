@@ -16,8 +16,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import com.afollestad.materialdialogs.MaterialDialog
-import com.eseo.projet_final_android.data.LocalPreferences
 import com.eseo.projet_final_android.R
+import com.eseo.projet_final_android.data.LocalPreferences
+import com.eseo.projet_final_android.data.model.HistoriqueItem
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.CancellationTokenSource
+import com.google.gson.Gson
 import java.util.*
 
 
@@ -67,9 +69,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun requestPermission() {
         if (!hasPermission()) {
             ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                PERMISSION_REQUEST_LOCATION
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    PERMISSION_REQUEST_LOCATION
             )
         } else {
             getLocation()
@@ -80,9 +82,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -112,8 +114,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         if (hasPermission()) {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
             fusedLocationClient.getCurrentLocation(
-                LocationRequest.PRIORITY_HIGH_ACCURACY,
-                CancellationTokenSource().token
+                    LocationRequest.PRIORITY_HIGH_ACCURACY,
+                    CancellationTokenSource().token
             )
                 .addOnSuccessListener { location = it
                     geoCode(location)
@@ -139,9 +141,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val results = geocoder.getFromLocation(location.latitude, location.longitude, 1)
             val polylineOptions = PolylineOptions()
             polylineOptions.add(
-                LatLng(location.latitude, location.longitude), LatLng(
+                    LatLng(location.latitude, location.longitude), LatLng(
                     eseolocation.latitude, eseolocation.longitude
-                )
+            )
             );
             polylineOptions.color(Color.BLUE);
             polylineOptions.width(12f);
@@ -152,25 +154,27 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             if (results.isNotEmpty()) {
                 maMap.clear()
                 maMap.addMarker(
-                    MarkerOptions()
-                        .position(LatLng(location.latitude, location.longitude))
-                        .title("Ma localisation")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                        MarkerOptions()
+                                .position(LatLng(location.latitude, location.longitude))
+                                .title("Ma localisation")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 )
                 maMap.addMarker(
-                    MarkerOptions()
-                        .position(LatLng( 47.49315784402205,
-                            -0.5513548306294191))
-                        .title("ESEO")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                        MarkerOptions()
+                                .position(LatLng(47.49315784402205,
+                                        -0.5513548306294191))
+                                .title("ESEO")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                 )
                 maMap.addPolyline(polylineOptions);
             }
             centrer(location)
-            LocalPreferences.getInstance(this).saveStringValue(results[0].getAddressLine(0))
-            findViewById<TextView>(R.id.locationText).text = getString(R.string.localisation_text) + results[0].getAddressLine(
-                0
-            )
+
+            var histoitem = HistoriqueItem(location, results[0].getAddressLine(0), distance)
+            val json: String = Gson().toJson(histoitem)
+            LocalPreferences.getInstance(this).addToHistory(json)
+
+            findViewById<TextView>(R.id.locationText).text = getString(R.string.localisation_text) + results[0].getAddressLine(0)
             findViewById<TextView>(R.id.distance).text = getString(R.string.distance_text) + distance + getString(R.string.kilometres)
         }
     }
@@ -179,14 +183,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         val zoomLevel = 0;
         if (location != null) {
             maMap.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                    LatLng(
-                        location.latitude,
-                        location.longitude
-                    ), zoomLevel.toFloat()
-                )
+                    CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                    location.latitude,
+                                    location.longitude
+                            ), zoomLevel.toFloat()
+                    )
             )
         }
+
+
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

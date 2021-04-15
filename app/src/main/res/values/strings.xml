@@ -17,4 +17,7 @@
     <string name="kilometres" translatable="false">km</string>
     <string name="recentrer">Recentrer</string>
     <string name="settings">Paramètres</string>
+    <string name="reset">Réinitialiser</string>
+    <string name="ESE0_localisation" translatable="false">geo:47.49330647407487, -0.5513441</string>
+    <string name="historique_vide">L\'historique des localisations est vide</string>
 </resources>
