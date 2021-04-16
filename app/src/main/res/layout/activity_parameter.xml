@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.historique_recycler.HistoriqueActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liste_parametres"
         tools:listitem="@layout/parameter_list"
@@ -17,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

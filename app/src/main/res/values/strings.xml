@@ -9,7 +9,7 @@
     <string name="parametres">paramètres de l\'application</string>
     <string name="oui">oui</string>
     <string name="non">non</string>
-    <string name="localisation_failure">Impossible de vous localiser</string>
+    <string name="localisation_search">Localisation en cours…</string>
     <string name="localisation_title">Localisation</string>
     <string name="my_localisation_message">Souhaitez-vous autoriser votre matériel à être localisé.</string>
     <string name="localisation_text">"Vous êtes localisé ici : "</string>
@@ -20,4 +20,5 @@
     <string name="reset">Réinitialiser</string>
     <string name="ESE0_localisation" translatable="false">geo:47.49330647407487, -0.5513441</string>
     <string name="historique_vide">L\'historique des localisations est vide</string>
+    <string name="distance_text_col">km de l\'ESEO</string>
 </resources>

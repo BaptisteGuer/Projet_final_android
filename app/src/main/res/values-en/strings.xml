@@ -7,7 +7,6 @@
     <string name="parametres">App parameters</string>
     <string name="oui">yes</string>
     <string name="non">no</string>
-    <string name="localisation_failure">Impossible</string>
     <string name="localisation_title">Location</string>
     <string name="localisation_text">You\'re locate here :</string>
     <string name="distance_text">ESEO is located here :</string>
@@ -16,4 +15,6 @@
     <string name="historique_vide">Empty history</string>
     <string name="recentrer">Focus</string>
     <string name="my_localisation_message">Would you like to allow your material to be located ?</string>
+    <string name="localisation_search">Locate in progress...</string>
+    <string name="distance_text_col">" km FROM ESEO"</string>
 </resources>

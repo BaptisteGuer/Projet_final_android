@@ -19,7 +19,7 @@ class ParameterAdapter(private val settingslist: Array<SettingsItem>) : Recycler
             itemView.findViewById<ImageView>(R.id.logo_image).setImageResource(setting.icon)
             if(setting.onClick != null) {
                 itemView.setOnClickListener {
-                    setting.onClick?.let { it() }
+                    setting.onClick.let { it() }
                 }
             }
         }
@@ -33,8 +33,8 @@ class ParameterAdapter(private val settingslist: Array<SettingsItem>) : Recycler
 
     // Connect la vue ET la données
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.showItem(settingslist[position])
-    }
+            holder.showItem(settingslist[position])
+        }
 
     override fun getItemCount(): Int {
         return settingslist.size

@@ -3,7 +3,6 @@ package com.eseo.projet_final_android.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast

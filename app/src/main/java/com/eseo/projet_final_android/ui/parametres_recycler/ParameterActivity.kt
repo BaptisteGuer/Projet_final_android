@@ -9,7 +9,6 @@ import android.provider.Settings
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eseo.projet_final_android.BuildConfig
-import com.eseo.projet_final_android.ui.MapActivity
 import com.eseo.projet_final_android.R
 import com.eseo.projet_final_android.data.model.SettingsItem
 import com.eseo.projet_final_android.ui.parametres_recycler.adapter.ParameterAdapter
@@ -39,13 +38,13 @@ class ParameterActivity : AppCompatActivity() {
                 val targetIntent = Intent().apply {
                     action = Settings.ACTION_LOCATION_SOURCE_SETTINGS
                 }
-                startActivity(targetIntent);
+                startActivity(targetIntent)
             },
             SettingsItem("Carte", R.drawable.map) {
                 startActivity( Intent( Intent.ACTION_VIEW, Uri.parse(getString(R.string.ESE0_localisation)) ) )
             },
             SettingsItem("Site de l'ESEO", R.drawable.logo_eseo) {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://eseo.fr/")));
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://eseo.fr/")))
             },
             SettingsItem("Me contacter", R.drawable.email) {
                 startActivity(Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "baptiste.guerin@reseau.eseo.fr", null)))

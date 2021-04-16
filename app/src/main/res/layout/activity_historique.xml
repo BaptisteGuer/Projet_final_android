@@ -6,18 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.historique_recycler.HistoriqueActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liste_historique"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="30dp"
+        android:layout_gravity="center"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@id/reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/historique_list"
-
         />
 
     <Button

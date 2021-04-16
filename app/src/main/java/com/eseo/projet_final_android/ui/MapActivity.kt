@@ -34,13 +34,13 @@ import java.util.*
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private val  PERMISSION_REQUEST_LOCATION: Int = 9999
-    private lateinit var location:Location
-    private lateinit var maMap:GoogleMap
+    private val PERMISSION_REQUEST_LOCATION: Int = 9999
+    private lateinit var location: Location
+    private lateinit var maMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
-    companion object{
+    companion object {
         fun getStartIntent(context: Context): Intent {
             return Intent(context, MapActivity::class.java)
         }
@@ -55,14 +55,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             setDisplayShowHomeEnabled(true)
         }
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+                .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         maMap = googleMap
         maMap.mapType = GoogleMap.MAP_TYPE_HYBRID
-        findViewById<TextView>(R.id.locationText).text = getString(R.string.localisation_failure)
+        findViewById<TextView>(R.id.locationText).text = getString(R.string.localisation_search)
         requestPermission()
     }
 
@@ -77,6 +77,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             getLocation()
         }
     }
+
     private fun hasPermission(): Boolean {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
@@ -84,10 +85,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
-            grantResults: IntArray
-    ) {
+            grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         when (requestCode) {
             PERMISSION_REQUEST_LOCATION -> {
                 // If request is cancelled, the result arrays are empty.
@@ -117,36 +116,37 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     LocationRequest.PRIORITY_HIGH_ACCURACY,
                     CancellationTokenSource().token
             )
-                .addOnSuccessListener { location = it
-                    geoCode(location)
-                    findViewById<Button>(R.id.recentrer).isVisible = true;
-                    findViewById<Button>(R.id.recentrer).setOnClickListener {
+                    .addOnSuccessListener {
+                        location = it
+                        geoCode(location)
+                        findViewById<Button>(R.id.recentrer).isVisible = true
+                        findViewById<Button>(R.id.recentrer).setOnClickListener {
+                            centrer(location)
+                        }
                         centrer(location)
                     }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Localisation impossible", Toast.LENGTH_SHORT).show()
-                }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Localisation impossible", Toast.LENGTH_SHORT).show()
+                    }
         }
     }
 
-
-    private fun geoCode(location: Location?){
-        val eseolocation = Location("")
-        eseolocation.latitude = 47.49315784402205
-        eseolocation.longitude = -0.5513548306294191
-        val distance = location?.distanceTo(eseolocation)?.div(1000)
-        if (location != null){
+    @SuppressLint("SetTextI18n")
+    private fun geoCode(location: Location?) {
+        if (location!=null){
+            val eseolocation = Location("")
+            eseolocation.latitude = 47.49315784402205
+            eseolocation.longitude = -0.5513548306294191
+            val distance = location.distanceTo(eseolocation).div(1000).toDouble()
             val geocoder = Geocoder(this, Locale.getDefault())
             val results = geocoder.getFromLocation(location.latitude, location.longitude, 1)
             val polylineOptions = PolylineOptions()
             polylineOptions.add(
                     LatLng(location.latitude, location.longitude), LatLng(
-                    eseolocation.latitude, eseolocation.longitude
+                    eseolocation.latitude, eseolocation.longitude)
             )
-            );
-            polylineOptions.color(Color.BLUE);
-            polylineOptions.width(12f);
+            polylineOptions.color(Color.BLUE)
+            polylineOptions.width(12f)
             polylineOptions.startCap(RoundCap())
             polylineOptions.endCap(RoundCap())
             polylineOptions.jointType(JointType.ROUND)
@@ -166,34 +166,24 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                                 .title("ESEO")
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                 )
-                maMap.addPolyline(polylineOptions);
+                maMap.addPolyline(polylineOptions)
             }
-            centrer(location)
 
-            var histoitem = HistoriqueItem(location, results[0].getAddressLine(0), distance)
+            val histoitem = HistoriqueItem(location.latitude,location.longitude, results[0].getAddressLine(0), distance)
             val json: String = Gson().toJson(histoitem)
             LocalPreferences.getInstance(this).addToHistory(json)
 
             findViewById<TextView>(R.id.locationText).text = getString(R.string.localisation_text) + results[0].getAddressLine(0)
             findViewById<TextView>(R.id.distance).text = getString(R.string.distance_text) + distance + getString(R.string.kilometres)
         }
+
     }
 
-    private fun centrer(location: Location?){
-        val zoomLevel = 0;
+    private fun centrer(location: Location?) {
+        val zoomlvl = 15.5f
         if (location != null) {
-            maMap.moveCamera(
-                    CameraUpdateFactory.newLatLngZoom(
-                            LatLng(
-                                    location.latitude,
-                                    location.longitude
-                            ), zoomLevel.toFloat()
-                    )
-            )
+            maMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location.latitude, location.longitude), zoomlvl), 2000, null)
         }
-
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
