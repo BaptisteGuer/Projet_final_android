@@ -21,4 +21,7 @@
     <string name="ESE0_localisation" translatable="false">geo:47.49330647407487, -0.5513441</string>
     <string name="historique_vide">L\'historique des localisations est vide</string>
     <string name="distance_text_col">km de l\'ESEO</string>
+    <string name="formula">"Formule 1 "</string>
+    <string name="get">Obtenir les données</string>
+    <string name="races_planning">Agenda des courses</string>
 </resources>

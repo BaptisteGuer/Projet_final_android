@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projet_final_android">
         <activity android:name=".ui.MainActivity"/>
-        <activity android:name=".ui.historique_recycler.HistoriqueActivity" android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
+        <activity android:name=".ui.historique_recycler.HistoryActivity" android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
         <activity android:name=".ui.parametres_recycler.ParameterActivity" android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
+        <activity android:name=".ui.f1_recycler.F1Activity" android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
         <activity android:name=".ui.MapActivity" android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>

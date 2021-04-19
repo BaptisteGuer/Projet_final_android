@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.historique_recycler.HistoriqueActivity">
+    tools:context=".ui.f1_recycler.F1Activity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/liste_historique"
+        android:id="@+id/liste_races"
+        tools:listitem="@layout/races_list"
+        android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@id/reset"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/get"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/historique_list"
         />
 
     <Button
-        android:id="@+id/reset"
+        android:id="@+id/get"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reset"
+        android:text="@string/get"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/liste_historique" />
+        app:layout_constraintTop_toBottomOf="@id/liste_races" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

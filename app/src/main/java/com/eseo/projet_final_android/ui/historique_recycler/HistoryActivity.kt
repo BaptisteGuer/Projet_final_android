@@ -14,20 +14,20 @@ import com.eseo.projet_final_android.R
 import com.eseo.projet_final_android.data.LocalPreferences
 import com.eseo.projet_final_android.data.model.HistoriqueItem
 import com.eseo.projet_final_android.ui.MainActivity
-import com.eseo.projet_final_android.ui.historique_recycler.adapter.HistoriqueAdapter
+import com.eseo.projet_final_android.ui.historique_recycler.adapter.HistoryAdapter
 import com.google.gson.Gson
 
-class HistoriqueActivity : AppCompatActivity() {
+class HistoryActivity : AppCompatActivity() {
 
     companion object {
         fun getStartIntent(context: Context): Intent {
-            return Intent(context, HistoriqueActivity::class.java)
+            return Intent(context, HistoryActivity::class.java)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_historique)
+        setContentView(R.layout.activity_history)
         supportActionBar?.apply {
             setTitle(R.string.historique)
             setDisplayHomeAsUpEnabled(true)
@@ -42,7 +42,6 @@ class HistoriqueActivity : AppCompatActivity() {
         rv.layoutManager = LinearLayoutManager(this)
         val allhistorique = LocalPreferences.getInstance(this).getHistory()
         Log.d("historique", allhistorique.toString())
-        Toast.makeText(this, allhistorique.toString(), Toast.LENGTH_LONG).show()
         val arrayHistory = ArrayList<HistoriqueItem>()
         if (allhistorique != null) {
             for (element in allhistorique) {
@@ -52,7 +51,7 @@ class HistoriqueActivity : AppCompatActivity() {
                 arrayHistory.add(histoitem)
             }
         }
-        rv.adapter = HistoriqueAdapter(arrayHistory)
+        rv.adapter = HistoryAdapter(arrayHistory)
     }
 
     override fun onSupportNavigateUp(): Boolean {

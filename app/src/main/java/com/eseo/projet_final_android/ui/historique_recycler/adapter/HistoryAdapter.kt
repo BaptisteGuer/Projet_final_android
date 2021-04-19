@@ -11,7 +11,7 @@ import com.eseo.projet_final_android.R
 import com.eseo.projet_final_android.data.model.HistoriqueItem
 
 
-class HistoriqueAdapter(private val historiquelist: ArrayList<HistoriqueItem>) : RecyclerView.Adapter<HistoriqueAdapter.ViewHolder>() {
+class HistoryAdapter(private val historiquelist: ArrayList<HistoriqueItem>) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,7 +28,7 @@ class HistoriqueAdapter(private val historiquelist: ArrayList<HistoriqueItem>) :
 
     // Retourne une « vue » / « layout » pour chaque élément de la liste
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.historique_list, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.history_list, parent, false)
         return ViewHolder(view)
     }
 

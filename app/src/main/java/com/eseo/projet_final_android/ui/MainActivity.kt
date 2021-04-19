@@ -9,7 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.eseo.projet_final_android.R
 import com.eseo.projet_final_android.data.LocalPreferences
-import com.eseo.projet_final_android.ui.historique_recycler.HistoriqueActivity
+import com.eseo.projet_final_android.ui.f1_recycler.F1Activity
+import com.eseo.projet_final_android.ui.historique_recycler.HistoryActivity
 import com.eseo.projet_final_android.ui.parametres_recycler.ParameterActivity
 
 class MainActivity : AppCompatActivity() {
@@ -29,12 +30,15 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.go_to_locate).setOnClickListener {
             startActivity(MapActivity.getStartIntent(this))
         }
+        findViewById<Button>(R.id.races).setOnClickListener {
+           startActivity(F1Activity.getStartIntent(this))
+        }
 
         findViewById<Button>(R.id.histo).setOnClickListener {
             if (LocalPreferences.getInstance(this).getHistory().isNullOrEmpty()) {
                 Toast.makeText(this, getString(R.string.historique_vide), Toast.LENGTH_SHORT).show()
             } else {
-                startActivity(HistoriqueActivity.getStartIntent(this))
+                startActivity(HistoryActivity.getStartIntent(this))
             }
         }
     }

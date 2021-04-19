@@ -31,7 +31,7 @@ class ParameterActivity : AppCompatActivity() {
         val rv = findViewById<RecyclerView>(R.id.liste_parametres)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = ParameterAdapter(arrayOf(
-            SettingsItem("Paramètres", R.drawable.settings) {
+            SettingsItem("Paramètres de l'application", R.drawable.settings) {
                 startActivity( Intent( Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + BuildConfig.APPLICATION_ID) ) )
             },
             SettingsItem("Paramètres de localisation", R.drawable.map) {
@@ -40,7 +40,7 @@ class ParameterActivity : AppCompatActivity() {
                 }
                 startActivity(targetIntent)
             },
-            SettingsItem("Carte", R.drawable.map) {
+            SettingsItem("Localiser l'ESEO", R.drawable.map) {
                 startActivity( Intent( Intent.ACTION_VIEW, Uri.parse(getString(R.string.ESE0_localisation)) ) )
             },
             SettingsItem("Site de l'ESEO", R.drawable.logo_eseo) {
