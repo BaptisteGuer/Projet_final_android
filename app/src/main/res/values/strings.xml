@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Projet_final_android</string>
+    <string name="app_name" translatable="false">Electron du volant</string>
     <string name="bienvenue">Bienvenue</string>
     <string name="logo_app">Logo de l\'application</string>
     <string name="annee" translatable="false">2021</string>

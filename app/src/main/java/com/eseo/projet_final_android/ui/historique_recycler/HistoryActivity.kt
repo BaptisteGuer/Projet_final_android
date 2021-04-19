@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eseo.projet_final_android.R
@@ -44,7 +43,7 @@ class HistoryActivity : AppCompatActivity() {
         Log.d("historique", allhistorique.toString())
         val arrayHistory = ArrayList<HistoriqueItem>()
         if (allhistorique != null) {
-            for (element in allhistorique) {
+            for (element in allhistorique) { //Deserialize chacune des localisations enregistrées dans l'historique du sharedpreferences au texte afin de recréer les objets
                 val histoitem = Gson().fromJson(element, HistoriqueItem::class.java)
                 val loc = "geo:"+histoitem.latitude.toString()+","+ histoitem.longitude.toString()
                 histoitem.onClick = { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(loc)))}
@@ -54,6 +53,7 @@ class HistoryActivity : AppCompatActivity() {
         rv.adapter = HistoryAdapter(arrayHistory)
     }
 
+    //Permet le retour sur la barre en haut de l'écran
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true

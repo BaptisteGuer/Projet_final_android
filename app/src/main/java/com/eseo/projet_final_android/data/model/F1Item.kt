@@ -2,7 +2,7 @@ package com.eseo.projet_final_android.data.model
 
 import com.google.gson.annotations.SerializedName
 
-
+//Cette classe correspond au format du JSON récupéré par l'API fournie par https://ergast.com
 data class F1Item(
     @SerializedName("MRData") val MRData: MRData
 )

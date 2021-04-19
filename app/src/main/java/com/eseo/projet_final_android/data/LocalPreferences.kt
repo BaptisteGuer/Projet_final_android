@@ -9,18 +9,18 @@ class LocalPreferences private constructor(context: Context) {
         Context.MODE_PRIVATE
     )
 
-    fun addToHistory(newEntry: String){
+    fun addToHistory(newEntry: String){ //Ajoute la localisation à l'historique puis l'enregistre dans le SharedPreferences
         val history = this.getHistory()
         history?.add(newEntry)
         clear()
         sharedPreferences.edit().putStringSet("historique", history).apply()
     }
 
-     fun getHistory(): MutableSet<String>? {
+     fun getHistory(): MutableSet<String>? { //Renvoie l'historique présent dans le SharedPreferences
         return sharedPreferences.getStringSet("historique",  HashSet<String>())
     }
 
-    fun clear(){
+    fun clear(){ //Vide l'historique du SharedPreferences
         sharedPreferences.edit().remove("historique").apply()
     }
 

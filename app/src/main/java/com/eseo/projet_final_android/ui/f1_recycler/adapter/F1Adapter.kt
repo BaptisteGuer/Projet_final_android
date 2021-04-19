@@ -11,7 +11,7 @@ import com.eseo.projet_final_android.data.model.Races
 
 class F1Adapter(private val raceslist: List<Races>) : RecyclerView.Adapter<F1Adapter.ViewHolder>() {
 
-
+    //Inscris les informations récupérées par l'API dans chacun des éléments du recyclerView
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun showItem(data: Races) {
             itemView.findViewById<TextView>(R.id.race_name).text = data.raceName

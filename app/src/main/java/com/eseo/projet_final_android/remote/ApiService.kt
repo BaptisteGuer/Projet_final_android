@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 
 interface ApiService {
 
-    // Début définition des différentes API disponible sur votre serveur
+    // Début définition de l'API et de son objet de retour
     @GET("current.json")
     suspend fun readStatus(): F1Item
 
@@ -50,7 +50,7 @@ interface ApiService {
                 .build()
 
             return Retrofit.Builder()
-                .baseUrl("https://ergast.com/api/f1/") // Mieux -> BuildConfig.URI_REMOTE_SERVER, oui oui écrire en dur un lien est une TRÈS MAUVAISE IDÉE !
+                .baseUrl("https://ergast.com/api/f1/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()

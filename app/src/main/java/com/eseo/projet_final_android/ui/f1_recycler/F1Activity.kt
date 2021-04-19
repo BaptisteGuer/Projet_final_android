@@ -3,7 +3,6 @@ package com.eseo.projet_final_android.ui.f1_recycler
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +36,7 @@ class F1Activity : AppCompatActivity() {
         var dataItemSource: List<Races>
         val rv = findViewById<RecyclerView>(R.id.liste_races)
         rv.layoutManager = LinearLayoutManager(this)
+        //Appel de l'API
         findViewById<Button>(R.id.get).setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 runCatching {

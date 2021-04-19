@@ -40,6 +40,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
 
+    //Permet d'appeler l'instanciation de l'activity
     companion object {
         fun getStartIntent(context: Context): Intent {
             return Intent(context, MapActivity::class.java)
@@ -59,6 +60,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
+    //Création de la map à partir de l'API googleMap
     override fun onMapReady(googleMap: GoogleMap) {
         maMap = googleMap
         maMap.mapType = GoogleMap.MAP_TYPE_HYBRID
@@ -66,6 +68,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         requestPermission()
     }
 
+    //envoie requête de permission
     private fun requestPermission() {
         if (!hasPermission()) {
             ActivityCompat.requestPermissions(
@@ -78,10 +81,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    //vérifie la permission de localisation
     private fun hasPermission(): Boolean {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
+    //test l'accès autorisé à la localisation sinon redemande l'accès
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
@@ -107,7 +112,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
+        //récupération de la localisation du téléphone
     @SuppressLint("MissingPermission")
     private fun getLocation() {
         if (hasPermission()) {
@@ -140,6 +145,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             val distance = location.distanceTo(eseolocation).div(1000).toDouble()
             val geocoder = Geocoder(this, Locale.getDefault())
             val results = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+            //Création de la ligne qui reliera la localisation et l'ESEO
             val polylineOptions = PolylineOptions()
             polylineOptions.add(
                     LatLng(location.latitude, location.longitude), LatLng(
@@ -150,7 +156,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             polylineOptions.startCap(RoundCap())
             polylineOptions.endCap(RoundCap())
             polylineOptions.jointType(JointType.ROUND)
-
+            //Inscris les deux marker, localisation du téléphone et celle de l'ESEO
             if (results.isNotEmpty()) {
                 maMap.clear()
                 maMap.addMarker(
@@ -166,9 +172,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                                 .title("ESEO")
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                 )
+                //ajout de la ligne reliant la localisation et l'ESEO
                 maMap.addPolyline(polylineOptions)
             }
-
+            //Serialization de l'objet HistoriqueItem contenant la localisation et ses informations
             val histoitem = HistoriqueItem(location.latitude,location.longitude, results[0].getAddressLine(0), distance)
             val json: String = Gson().toJson(histoitem)
             LocalPreferences.getInstance(this).addToHistory(json)
@@ -178,7 +185,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
     }
-
+//Permet de recentrer sur le marker de la localisation avec une animation
     private fun centrer(location: Location?) {
         val zoomlvl = 15.5f
         if (location != null) {
